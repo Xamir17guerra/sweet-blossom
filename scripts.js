@@ -1,7 +1,7 @@
 // Configuración de Firebase
 const firebaseConfig = {
-    databaseURL: "https://sweet-blossom-7877e-default-rtdb.firebaseio.com/",
-    token: "SndNGbyWFNYjL0GEB2DxHF0DRvg4fEJVcHhd9AAM"  // Reemplaza con tu token real
+    databaseURL: "https://smarthome2-a24c5-default-rtdb.firebaseio.com/",
+    token: "yXmIvdRnL5YGpp3gQL1my1WR3iVf0xqw6izBHoQp"  // Reemplaza con tu token real
 };
 
 // Función para enviar datos a Firebase
@@ -24,18 +24,17 @@ function submitContactForm() {
                 'Content-Type': 'application/json'
             }
         })
-        .then(response => {
-            if (response.ok) {
-                alert('Mensaje enviado con éxito');
-                document.getElementById('name').value = '';
-                document.getElementById('email').value = '';
-                document.getElementById('message').value = '';
-            } else {
-                alert('Error al enviar el mensaje');
-            }
+        .then(response => response.json())
+        .then(data => {
+            console.log('Success:', data);
+            alert('Mensaje enviado con éxito');
+            document.getElementById('name').value = '';
+            document.getElementById('email').value = '';
+            document.getElementById('message').value = '';
         })
-        .catch(error => {
-            alert('Error al enviar el mensaje: ' + error.message);
+        .catch((error) => {
+            console.error('Error:', error);
+            alert('Error al enviar el mensaje');
         });
     } else {
         alert('Por favor, completa todos los campos');
