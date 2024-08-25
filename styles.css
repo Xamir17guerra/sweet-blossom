@@ -25,37 +25,39 @@ body {
     display: inline-block;
     background-color: #fff;
     padding: 10px;
-    margin-right: 15px;
+    margin-right: 20px; /* Aumentar el espacio entre elementos */
     border-radius: 10px;
     text-align: center;
-    min-width: 200px;
+    min-width: 250px; /* Aumentar el tamaño mínimo de los elementos */
     box-shadow: 0 4px 8px rgba(0,0,0,0.2);
     transition: transform 0.3s;
 }
 
 .menu-item:hover {
-    transform: scale(1.05);
+    transform: scale(1.1); /* Aumentar la escala al pasar el cursor */
 }
 
 .menu-image {
     width: 100%;
     height: auto;
+    max-height: 200px; /* Ajustar la altura máxima de las imágenes */
     border-radius: 5px;
 }
 
 .contact-form {
     background-color: #fbe9e7;
-    padding: 20px;
+    padding: 15px; /* Reducir el padding */
     border-radius: 10px;
-    margin: 20px auto;
+    margin: 30px auto;
     width: 80%;
     text-align: left;
+    max-width: 600px; /* Limitar el ancho máximo del formulario */
 }
 
 .contact-form input, .contact-form textarea {
     width: 100%;
-    padding: 10px;
-    margin: 10px 0;
+    padding: 8px; /* Reducir el padding */
+    margin: 8px 0; /* Reducir el margen */
     border: 1px solid #ccc;
     border-radius: 5px;
 }
@@ -63,8 +65,15 @@ body {
 .contact-form button {
     background-color: #ff6f61;
     color: white;
-    padding: 10px 20px;
+    padding: 8px 15px; /* Reducir el padding */
     border: none;
     border-radius: 5px;
     cursor: pointer;
+}
+
+.slogan {
+    text-align: center;
+    margin: 30px;
+    font-size: 1.2em;
+    color: #ff6f61;
 }
