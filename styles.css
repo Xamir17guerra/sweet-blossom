@@ -68,7 +68,6 @@ body {
     padding: 20px;
     box-sizing: border-box;
     z-index: 1000;
-    text-align: center;
 }
 
 .sub-menu button {
@@ -80,18 +79,6 @@ body {
     cursor: pointer;
     font-size: 16px;
     margin-bottom: 20px;
-}
-
-.sub-menu .menu-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 0;
-}
-
-.sub-menu .menu-item {
-    margin: 10px 0; /* Espaciado vertical en el submenú */
-    min-width: 200px; /* Ajustar el tamaño mínimo de los elementos */
 }
 
 .contact-form {
