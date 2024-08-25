@@ -40,3 +40,25 @@ function submitContactForm() {
         alert('Por favor, completa todos los campos');
     }
 }
+
+// Funciones para mostrar y ocultar los submenús
+function showSubMenu(menu) {
+    const subMenuId = menu + '-menu';
+    document.getElementById(subMenuId).style.display = 'block';
+}
+
+function hideSubMenu(menu) {
+    const subMenuId = menu + '-menu';
+    document.getElementById(subMenuId).style.display = 'none';
+}
+
+// Asegurarse de que el menú se cierre cuando se haga clic fuera de él
+document.addEventListener('click', function(event) {
+    const target = event.target;
+    if (!target.closest('.menu-item') && !target.closest('.sub-menu')) {
+        const subMenus = document.querySelectorAll('.sub-menu');
+        subMenus.forEach(subMenu => {
+            subMenu.style.display = 'none';
+        });
+    }
+});
