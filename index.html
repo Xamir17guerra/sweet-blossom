@@ -6,15 +6,6 @@
     <title>Sweet Blossom</title>
     <link rel="stylesheet" href="styles.css">
 </head>
-    <!-- Firebase App (the core Firebase SDK) -->
-<script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-app.js"></script>
-
-<!-- Add Firebase products that you want to use -->
-<script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-database.js"></script>
-
-<!-- Vincula tu archivo scripts.js después de cargar Firebase -->
-<script src="scripts.js"></script>
-
 <body>
     <header>
         <h1>Sweet Blossom</h1>
@@ -67,10 +58,32 @@
         <p>&copy; 2024 Sweet Blossom. Todos los derechos reservados.</p>
     </footer>
 
-    <!-- Agrega los scripts de Firebase -->
-    <script src="https://www.gstatic.com/firebasejs/9.21.0/firebase-app.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/9.21.0/firebase-database.js"></script>
-    <script src="script.js"></script>
+    <!-- Firebase App (the core Firebase SDK) -->
+    <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-app.js"></script>
+
+    <!-- Add Firebase products that you want to use -->
+    <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-database.js"></script>
+
+    <!-- Configura Firebase -->
+    <script>
+        // Configuración de Firebase
+        const firebaseConfig = {
+            apiKey: "SndNGbyWFNYjL0GEB2DxHF0DRvg4fEJVcHhd9AAM",
+            authDomain: "sweet-blossom-7877e.firebaseapp.com",
+            databaseURL: "https://sweet-blossom-7877e-default-rtdb.firebaseio.com/",
+            projectId: "sweet-blossom-7877e"
+            storageBucket: "sweet-blossom-7877e.appspot.com",
+            messagingSenderId: "821489489765",  // ID de remitente
+            appId: "1:821489489765:web:50d52bc112f180b9daf38c"  // Deberías reemplazar "YOUR_APP_ID" con el ID real de tu aplicación si lo tienes.
+        };
+
+        // Inicializar Firebase
+        const app = firebase.initializeApp(firebaseConfig);
+        const database = firebase.database(app);
+    </script>
+
+    <!-- Lógica para enviar los datos a Firebase -->
+    <script src="scripts.js"></script>
 </body>
 </html>
 
