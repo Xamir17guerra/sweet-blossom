@@ -3,70 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sweet Blossom</title>
+    <title>Sweet Blossom - Contacto</title>
     <style>
         body {
             font-family: Arial, sans-serif;
             background-color: #fff5e1;
+            color: #333;
             margin: 0;
             padding: 0;
-            color: #333;
-        }
-        header {
-            background-color: #ff6f61;
-            padding: 20px;
-            text-align: center;
-            color: white;
-        }
-        nav {
-            display: flex;
-            justify-content: center;
-            background-color: #ff8a80;
-            padding: 10px;
-        }
-        nav a {
-            margin: 0 15px;
-            color: white;
-            text-decoration: none;
-            font-weight: bold;
-        }
-        nav a:hover {
-            text-decoration: underline;
-        }
-        .content {
-            padding: 20px;
-            text-align: center;
-        }
-        .menu {
-            display: flex;
-            justify-content: space-around;
-            flex-wrap: wrap;
-        }
-        .menu-item {
-            background-color: #ffe0b2;
-            border-radius: 10px;
-            margin: 10px;
-            padding: 20px;
-            width: 200px;
-        }
-        .menu-item img {
-            width: 100%;
-            border-radius: 10px;
-        }
-        .menu-item h3 {
-            color: #d84315;
-        }
-        .menu-item p {
-            font-size: 18px;
-        }
-        footer {
-            background-color: #ff8a80;
-            color: white;
-            text-align: center;
-            padding: 10px;
-            position: fixed;
-            width: 100%;
-            bottom: 0;
         }
         .contact-form {
             background-color: #fbe9e7;
@@ -94,94 +38,16 @@
     </style>
 </head>
 <body>
-    <header>
-        <h1>Sweet Blossom</h1>
-    </header>
 
-    <nav>
-        <a href="#menu">Menú</a>
-        <a href="#contact">Contacto</a>
-    </nav>
-
-    <div class="content" id="menu">
-        <h2>Menú de Dulces</h2>
-        <div class="menu">
-            <div class="menu-item">
-                <img src="tarta.jpg" alt="Tarta de frutas">
-                <h3>Tarta de Frutas</h3>
-                <p>$10.00</p>
-            </div>
-            <div class="menu-item">
-                <img src="cupcake.jpg" alt="Cupcake">
-                <h3>Cupcake</h3>
-                <p>$2.50</p>
-            </div>
-            <div class="menu-item">
-                <img src="galletas.jpg" alt="Galletas">
-                <h3>Galletas</h3>
-                <p>$5.00</p>
-            </div>
-        </div>
+    <div class="contact-form">
+        <h3>Envíanos un mensaje</h3>
+        <input type="text" id="name" placeholder="Tu Nombre" required>
+        <input type="email" id="email" placeholder="Tu Correo Electrónico" required>
+        <textarea id="message" rows="4" placeholder="Tu Mensaje" required></textarea>
+        <button onclick="submitContactForm()">Enviar</button>
     </div>
 
-    <div class="content" id="contact">
-        <h2>Contacto</h2>
-        <div class="contact-form">
-            <h3>Envíanos un mensaje</h3>
-            <input type="text" id="name" placeholder="Tu Nombre" required>
-            <input type="email" id="email" placeholder="Tu Correo Electrónico" required>
-            <textarea id="message" rows="4" placeholder="Tu Mensaje" required></textarea>
-            <button onclick="submitContactForm()">Enviar</button>
-        </div>
-    </div>
-
-    <footer>
-        <p>&copy; 2024 Sweet Blossom. Todos los derechos reservados.</p>
-    </footer>
-
-    <!-- Firebase integration -->
-    <script src="https://www.gstatic.com/firebasejs/9.14.0/firebase-app.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/9.14.0/firebase-database.js"></script>
-    <script>
-        // Your web app's Firebase configuration
-        const firebaseConfig = {
-            apiKey: "SndNGbyWFNYjL0GEB2DxHF0DRvg4fEJVcHhd9AAM",
-            authDomain: "sweet-blossom-7877e.firebaseapp.com",
-            databaseURL: "https://sweet-blossom-7877e-default-rtdb.firebaseio.com",
-            projectId: "sweet-blossom-7877e",
-            storageBucket: "sweet-blossom-7877e.appspot.com",
-            messagingSenderId: "821489489765",
-            appId: "1:821489489765:web:50d52bc112f180b9daf38c"
-        };
-
-        // Initialize Firebase
-        const app = firebase.initializeApp(firebaseConfig);
-        const database = firebase.database(app);
-
-        // Function to submit the contact form
-        function submitContactForm() {
-            const name = document.getElementById('name').value;
-            const email = document.getElementById('email').value;
-            const message = document.getElementById('message').value;
-
-            if (name && email && message) {
-                const contactRef = database.ref('contacts').push();
-                contactRef.set({
-                    name: name,
-                    email: email,
-                    message: message
-                }).then(() => {
-                    alert('Mensaje enviado con éxito');
-                    document.getElementById('name').value = '';
-                    document.getElementById('email').value = '';
-                    document.getElementById('message').value = '';
-                }).catch((error) => {
-                    alert('Error al enviar el mensaje: ' + error.message);
-                });
-            } else {
-                alert('Por favor, completa todos los campos');
-            }
-        }
-    </script>
+    <!-- Enlace al script de JavaScript -->
+    <script src="scripts.js"></script>
 </body>
 </html>
