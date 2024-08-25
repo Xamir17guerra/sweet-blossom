@@ -1,38 +1,40 @@
-// Firebase configuration
+// Configuración de Firebase
 const firebaseConfig = {
-    apiKey: "SndNGbyWFNYjL0GEB2DxHF0DRvg4fEJVcHhd9AAM",
-    authDomain: "sweet-blossom-7877e.firebaseapp.com",
-    databaseURL: "https://sweet-blossom-7877e-default-rtdb.firebaseio.com",
-    projectId: "sweet-blossom-7877e",
-    storageBucket: "sweet-blossom-7877e.appspot.com",
-    messagingSenderId: "821489489765",
-    appId: "1:821489489765:web:50d52bc112f180b9daf38c"
+    databaseURL: "https://sweet-blossom-7877e-default-rtdb.firebaseio.com/",
+    token: "SndNGbyWFNYjL0GEB2DxHF0DRvg4fEJVcHhd9AAM"  // Reemplaza con tu token real
 };
 
-// Initialize Firebase
-const app = firebase.initializeApp(firebaseConfig);
-const database = firebase.database(app);
-
-// Function to submit the contact form
+// Función para enviar datos a Firebase
 function submitContactForm() {
     const name = document.getElementById('name').value;
     const email = document.getElementById('email').value;
     const message = document.getElementById('message').value;
 
     if (name && email && message) {
-        const newContactRef = database.ref('contacts').push();
-        newContactRef.set({
+        const data = {
             name: name,
             email: email,
             message: message
+        };
+
+        fetch(`${firebaseConfig.databaseURL}/contacts.json?auth=${firebaseConfig.token}`, {
+            method: 'POST',
+            body: JSON.stringify(data),
+            headers: {
+                'Content-Type': 'application/json'
+            }
         })
-        .then(() => {
-            alert('Mensaje enviado con éxito');
-            document.getElementById('name').value = '';
-            document.getElementById('email').value = '';
-            document.getElementById('message').value = '';
+        .then(response => {
+            if (response.ok) {
+                alert('Mensaje enviado con éxito');
+                document.getElementById('name').value = '';
+                document.getElementById('email').value = '';
+                document.getElementById('message').value = '';
+            } else {
+                alert('Error al enviar el mensaje');
+            }
         })
-        .catch((error) => {
+        .catch(error => {
             alert('Error al enviar el mensaje: ' + error.message);
         });
     } else {
