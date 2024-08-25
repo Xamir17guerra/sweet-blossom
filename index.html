@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sweet Blossom</title>
     <link rel="stylesheet" href="styles.css">
+    <script defer src="scripts.js"></script>
 </head>
 <body>
 
@@ -12,61 +13,67 @@
         <h1>Sweet Blossom</h1>
     </div>
 
-    <div class="menu-container">
-        <div class="menu-item">
-            <img src="images/brownies.jpg" alt="Brownies" class="menu-image">
-            <h4>Brownies</h4>
-            <p>Deliciosos brownies con trozos de nuez. - $5</p>
+    <div class="menu-container" id="menu-container">
+        <div class="menu-item" onclick="showSubMenu('cookies')">
+            <img src="images/galletas.jpg" alt="Galletas" class="menu-image">
+            <h4>Galletas</h4>
+            <p>Galletas variadas. - $1</p>
+        </div>
+        <div class="menu-item" onclick="showSubMenu('muffins')">
+            <img src="images/muffin.jpg" alt="Muffin" class="menu-image">
+            <h4>Muffins</h4>
+            <p>Muffins variados. - $1</p>
         </div>
         <div class="menu-item">
-            <img src="images/galletas.jpg" alt="Galletas de Chocolate" class="menu-image">
-            <h4>Galletas de Chocolate</h4>
-            <p>Galletas caseras con chispas de chocolate. - $3</p>
+            <img src="images/dulce-limon.jpg" alt="Dulce de Limón" class="menu-image">
+            <h4>Dulce de Limón</h4>
+            <p>Dulce de limón. - $1</p>
         </div>
         <div class="menu-item">
-            <img src="images/pastel.jpg" alt="Pastel de Vainilla" class="menu-image">
-            <h4>Pastel de Vainilla</h4>
-            <p>Suave pastel de vainilla con glaseado. - $7</p>
+            <img src="images/jugo-naranja.jpg" alt="Jugo de Naranja con Rapadura" class="menu-image">
+            <h4>Jugo de Naranja con Rapadura</h4>
+            <p>Jugo natural. - $1</p>
         </div>
-        <div class="menu-item">
-            <img src="images/macarons.jpg" alt="Macarons" class="menu-image">
-            <h4>Macarons</h4>
-            <p>Macarons de diversos sabores. - $6</p>
+    </div>
+
+    <!-- Submenú para Galletas -->
+    <div class="sub-menu" id="cookies-menu">
+        <button onclick="hideSubMenu('cookies')">Volver</button>
+        <h2>Tipos de Galletas</h2>
+        <div class="menu-container">
+            <div class="menu-item">
+                <img src="images/galleta-m-m.jpg" alt="Galletas M&M" class="menu-image">
+                <h4>Galletas M&M</h4>
+                <p>Galletas con M&M's. - $1</p>
+            </div>
+            <div class="menu-item">
+                <img src="images/galleta-banana.jpg" alt="Galletas Banana" class="menu-image">
+                <h4>Galletas Banana</h4>
+                <p>Galletas con sabor a banana. - $1</p>
+            </div>
+            <div class="menu-item">
+                <img src="images/galleta-golden-oro.jpg" alt="Galletas Golden Oro" class="menu-image">
+                <h4>Galletas Golden Oro</h4>
+                <p>Galletas doradas. - $1</p>
+            </div>
         </div>
-        <div class="menu-item">
-            <img src="images/cheesecake.jpg" alt="Cheesecake" class="menu-image">
-            <h4>Cheesecake</h4>
-            <p>Cheesecake de frutas frescas. - $8</p>
-        </div>
-        <div class="menu-item">
-            <img src="images/magdalenas.jpg" alt="Magdalenas" class="menu-image">
-            <h4>Magdalenas</h4>
-            <p>Magdalenas con relleno de crema. - $4</p>
-        </div>
-        <div class="menu-item">
-            <img src="images/brownies-veganos.jpg" alt="Brownies Veganos" class="menu-image">
-            <h4>Brownies Veganos</h4>
-            <p>Brownies sin ingredientes de origen animal. - $5</p>
-        </div>
-        <div class="menu-item">
-            <img src="images/tarta-manzana.jpg" alt="Tarta de Manzana" class="menu-image">
-            <h4>Tarta de Manzana</h4>
-            <p>Tarta casera de manzana con canela. - $6</p>
-        </div>
-        <div class="menu-item">
-            <img src="images/donuts.jpg" alt="Donuts" class="menu-image">
-            <h4>Donuts</h4>
-            <p>Donuts glaseados recién horneados. - $3</p>
-        </div>
-        <div class="menu-item">
-            <img src="images/pastel-limon.jpg" alt="Pastel de Limón" class="menu-image">
-            <h4>Pastel de Limón</h4>
-            <p>Pastel refrescante de limón. - $7</p>
-        </div>
-        <div class="menu-item">
-            <img src="images/galletas-avena.jpg" alt="Galletas de Avena" class="menu-image">
-            <h4>Galletas de Avena</h4>
-            <p>Galletas nutritivas de avena. - $4</p>
+    </div>
+
+    <!-- Submenú para Muffins -->
+    <div class="sub-menu" id="muffins-menu">
+        <button onclick="hideSubMenu('muffins')">Volver</button>
+        <h2>Tipos de Muffins</h2>
+        <div class="menu-container">
+            <div class="menu-item">
+                <img src="images/muffin-chocolate.jpg" alt="Muffin de Chocolate" class="menu-image">
+                <h4>Muffin de Chocolate</h4>
+                <p>Muffin con trozos de chocolate. - $1</p>
+            </div>
+            <div class="menu-item">
+                <img src="images/muffin-vainilla.jpg" alt="Muffin de Vainilla" class="menu-image">
+                <h4>Muffin de Vainilla</h4>
+                <p>Muffin suave de vainilla. - $1</p>
+            </div>
         </div>
     </div>
 
@@ -81,9 +88,7 @@
     <div class="slogan">
         <p>¡Endulza tu vida con Sweet Blossom!</p>
     </div>
-
-    <!-- Enlace al script de JavaScript -->
-    <script src="scripts.js"></script>
+    
 </body>
 </html>
 
