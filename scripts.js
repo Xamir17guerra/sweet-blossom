@@ -4,9 +4,9 @@ const firebaseConfig = {
     authDomain: "sweet-blossom-7877e.firebaseapp.com",
     databaseURL: "https://sweet-blossom-7877e-default-rtdb.firebaseio.com",
     projectId: "sweet-blossom-7877e",
-    storageBucket: "sweet-blossom-7877e.appspot.com",
-    messagingSenderId: "SENDER_ID",
-    appId: "APP_ID"
+storageBucket: "sweet-blossom-7877e.appspot.com",
+            messagingSenderId: "821489489765",  // ID de remitente
+            appId: "1:821489489765:web:50d52bc112f180b9daf38c" 
 };
 
 // Inicializa Firebase
