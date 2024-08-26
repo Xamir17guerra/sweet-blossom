@@ -55,6 +55,12 @@ body {
     border-radius: 5px;
 }
 
+.menu-info {
+    margin-top: 10px; /* Añadir espacio entre la imagen y el texto */
+    font-size: 16px; /* Ajustar el tamaño de la fuente para que sea legible */
+    color: #333; /* Color del texto */
+}
+
 .sub-menu {
     display: none; /* Ocultar los submenús por defecto */
     position: fixed;
@@ -114,3 +120,4 @@ body {
     font-size: 1.2em;
     color: #ff6f61;
 }
+
