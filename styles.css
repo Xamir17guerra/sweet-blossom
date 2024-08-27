@@ -63,16 +63,12 @@ body {
 
 .sub-menu {
     display: none; /* Ocultar los submenús por defecto */
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.8);
+    position: absolute; /* Cambiado de fixed a absolute para ajustar el posicionamiento */
+    background-color: rgba(0, 0, 0, 0.9);
     color: #fff;
-    overflow-y: auto;
     padding: 20px;
-    box-sizing: border-box;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
     z-index: 1000;
 }
 
@@ -87,20 +83,24 @@ body {
     margin-bottom: 20px;
 }
 
+.contact-order-container {
+    display: flex;
+    justify-content: space-between;
+    margin: 20px;
+}
+
 .contact-form {
     background-color: #fbe9e7;
-    padding: 15px; /* Reducir el padding */
+    padding: 15px;
     border-radius: 10px;
-    margin: 30px auto;
-    width: 80%;
+    width: 45%; /* Ajustar el tamaño del formulario */
     text-align: left;
-    max-width: 600px; /* Limitar el ancho máximo del formulario */
 }
 
 .contact-form input, .contact-form textarea {
-    width: 100%;
-    padding: 8px; /* Reducir el padding */
-    margin: 8px 0; /* Reducir el margen */
+    width: calc(100% - 16px); /* Ajuste para padding y márgenes */
+    padding: 8px;
+    margin: 8px 0;
     border: 1px solid #ccc;
     border-radius: 5px;
 }
@@ -108,10 +108,44 @@ body {
 .contact-form button {
     background-color: #ff6f61;
     color: white;
-    padding: 8px 15px; /* Reducir el padding */
+    padding: 8px 15px;
     border: none;
     border-radius: 5px;
     cursor: pointer;
+}
+
+.order-form-container {
+    width: 45%; /* Ajustar el tamaño del contenedor del formulario de órdenes */
+}
+
+.order-item {
+    margin-bottom: 10px;
+}
+
+.order-item input {
+    width: 60px; /* Ajustar el tamaño del input */
+}
+
+.sub-menu #order-menu {
+    display: none;
+    position: absolute;
+    background-color: rgba(0, 0, 0, 0.9);
+    color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+
+.order-item input {
+    width: 60px; /* Ajustar el tamaño del input */
+}
+
+.order-item h4 {
+    margin: 0;
+}
+
+#order-total {
+    margin-top: 10px;
 }
 
 .slogan {
@@ -119,5 +153,16 @@ body {
     margin: 30px;
     font-size: 1.2em;
     color: #ff6f61;
+}
+
+.instagram-icon {
+    position: fixed;
+    bottom: 10px;
+    right: 10px;
+}
+
+.instagram-image {
+    width: 50px; /* Tamaño más pequeño */
+    height: auto;
 }
 
