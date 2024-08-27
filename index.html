@@ -54,7 +54,6 @@
                 <div class="menu-info">
                     <h4>Galletas M&M</h4>
                     <p>Galletas con M&M's. - $1</p>
-                    <input type="number" id="cookies-mm" min="0" value="0">
                 </div>
             </div>
             <div class="menu-item">
@@ -62,7 +61,6 @@
                 <div class="menu-info">
                     <h4>Galletas Banana</h4>
                     <p>Galletas con sabor a banana. - $1</p>
-                    <input type="number" id="cookies-banana" min="0" value="0">
                 </div>
             </div>
             <div class="menu-item">
@@ -70,7 +68,6 @@
                 <div class="menu-info">
                     <h4>Galletas Golden Oro</h4>
                     <p>Galletas doradas. - $1</p>
-                    <input type="number" id="cookies-golden" min="0" value="0">
                 </div>
             </div>
         </div>
@@ -86,7 +83,6 @@
                 <div class="menu-info">
                     <h4>Muffin de Chocolate</h4>
                     <p>Muffin suaves de chocolate. - $1</p>
-                    <input type="number" id="muffin-chocolate" min="0" value="0">
                 </div>
             </div>
             <div class="menu-item">
@@ -94,64 +90,70 @@
                 <div class="menu-info">
                     <h4>Muffin de Vainilla</h4>
                     <p>Muffin suaves de vainilla. - $1</p>
-                    <input type="number" id="muffin-vainilla" min="0" value="0">
                 </div>
             </div>
         </div>
     </div>
 
-    <div class="contact-form">
-        <h3>Envíanos un mensaje</h3>
-        <input type="text" id="name" placeholder="Tu Nombre" required>
-        <input type="email" id="email" placeholder="Tu Correo Electrónico" required>
-        <textarea id="message" rows="3" placeholder="Tu Mensaje" required></textarea>
-        <button onclick="submitContactForm()">Enviar</button>
-    </div>
+    <div class="contact-order-container">
+        <div class="contact-form">
+            <h3>Envíanos un mensaje</h3>
+            <input type="text" id="name" placeholder="Tu Nombre" required>
+            <input type="email" id="email" placeholder="Tu Correo Electrónico" required>
+            <textarea id="message" rows="3" placeholder="Tu Mensaje" required></textarea>
+            <button onclick="submitContactForm()">Enviar</button>
+        </div>
 
-    <div class="order-form">
-        <h3>Haz tu Orden</h3>
-        <div class="order-item">
-            <h4>Galletas M&M</h4>
-            <input type="number" id="order-cookies-mm" min="0" value="0">
+        <div class="order-form-container">
+            <h3>Realiza tu Orden</h3>
+            <button onclick="showSubMenu('order')">Ver Orden</button>
+            <div class="sub-menu" id="order-menu">
+                <button onclick="hideSubMenu('order')">Cerrar</button>
+                <h2>Menú de Ordenes</h2>
+                <div class="order-item">
+                    <h4>Galletas M&M</h4>
+                    <input type="number" id="order-cookies-mm" value="0" min="0">
+                </div>
+                <div class="order-item">
+                    <h4>Galletas Banana</h4>
+                    <input type="number" id="order-cookies-banana" value="0" min="0">
+                </div>
+                <div class="order-item">
+                    <h4>Galletas Golden Oro</h4>
+                    <input type="number" id="order-cookies-golden" value="0" min="0">
+                </div>
+                <div class="order-item">
+                    <h4>Muffin de Chocolate</h4>
+                    <input type="number" id="order-muffin-chocolate" value="0" min="0">
+                </div>
+                <div class="order-item">
+                    <h4>Muffin de Vainilla</h4>
+                    <input type="number" id="order-muffin-vainilla" value="0" min="0">
+                </div>
+                <div class="order-item">
+                    <h4>Dulce de Limón</h4>
+                    <input type="number" id="order-dulce-limon" value="0" min="0">
+                </div>
+                <div class="order-item">
+                    <h4>Jugo de Naranja con Rapadura</h4>
+                    <input type="number" id="order-jugo-naranja" value="0" min="0">
+                </div>
+                <div id="order-total">Total: $0.00</div>
+                <button onclick="submitOrder()">Enviar Orden</button>
+            </div>
         </div>
-        <div class="order-item">
-            <h4>Galletas Banana</h4>
-            <input type="number" id="order-cookies-banana" min="0" value="0">
-        </div>
-        <div class="order-item">
-            <h4>Galletas Golden Oro</h4>
-            <input type="number" id="order-cookies-golden" min="0" value="0">
-        </div>
-        <div class="order-item">
-            <h4>Muffin de Chocolate</h4>
-            <input type="number" id="order-muffin-chocolate" min="0" value="0">
-        </div>
-        <div class="order-item">
-            <h4>Muffin de Vainilla</h4>
-            <input type="number" id="order-muffin-vainilla" min="0" value="0">
-        </div>
-        <div class="order-item">
-            <h4>Dulce de Limón</h4>
-            <input type="number" id="order-dulce-limon" min="0" value="0">
-        </div>
-        <div class="order-item">
-            <h4>Jugo de Naranja con Rapadura</h4>
-            <input type="number" id="order-jugo-naranja" min="0" value="0">
-        </div>
-        <button onclick="submitOrder()">Realizar Orden</button>
-        <p id="order-total">Total: $0.00</p>
     </div>
 
     <div class="slogan">
         <p>¡Endulza tu vida con Sweet Blossom!</p>
     </div>
 
-    <div class="social-media">
+    <!-- Ícono de Instagram -->
+    <div class="instagram-icon">
         <a href="https://www.instagram.com/sweet_blossom.cake?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" target="_blank">
-            <img src="images/instagram-icon.png" alt="Instagram">
+            <img src="images/instagram-icon.png" alt="Instagram" class="instagram-image">
         </a>
     </div>
-
+    
 </body>
 </html>
-
