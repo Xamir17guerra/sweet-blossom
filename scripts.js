@@ -1,7 +1,7 @@
 // Configuración de Firebase
 const firebaseConfig = {
-    databaseURL: "https://sweet-blossom-7877e-default-rtdb.firebaseio.com/",
-    token: "yXmIvdRnL5YGpp3gQL1my1WR3iVf0xqw6izBHoQp"
+    databaseURL: "https://smarthome2-a24c5-default-rtdb.firebaseio.com/",
+    token: "yXmIvdRnL5YGpp3gQL1my1WR3iVf0xqw6izBHoQp"  // Reemplaza con tu token real
 };
 
 // Función para enviar datos a Firebase (Contacto)
