@@ -4,7 +4,7 @@ const firebaseConfig = {
     token: "yXmIvdRnL5YGpp3gQL1my1WR3iVf0xqw6izBHoQp"
 };
 
-// Función para enviar datos del formulario de contacto a Firebase
+// Función para enviar datos a Firebase
 function submitContactForm() {
     const name = document.getElementById('name').value;
     const email = document.getElementById('email').value;
@@ -37,37 +37,57 @@ function submitContactForm() {
             alert('Error al enviar el mensaje');
         });
     } else {
-        alert('Por favor, completa todos los campos');
+        alert('Por favor, complete todos los campos.');
     }
 }
 
-// Función para calcular el total de la orden
-function calculateTotal() {
-    let total = 0;
-    total += document.getElementById('order-galletas').checked ? 1 : 0;
-    total += document.getElementById('order-galletas-mm').checked ? 1 : 0;
-    total += document.getElementById('order-galletas-banana').checked ? 1 : 0;
-    total += document.getElementById('order-muffins').checked ? 1 : 0;
-    total += document.getElementById('order-muffins-chocolate').checked ? 1 : 0;
-    total += document.getElementById('order-muffins-vainilla').checked ? 1 : 0;
-    total += document.getElementById('order-dulce-limon').checked ? 1 : 0;
-    total += document.getElementById('order-jugo-naranja').checked ? 0.50 : 0;
-
-    document.getElementById('total-amount').textContent = total.toFixed(2);
+// Función para mostrar submenú
+function showSubMenu(menuId) {
+    document.querySelectorAll('.sub-menu').forEach(menu => menu.style.display = 'none');
+    document.getElementById(`${menuId}-menu`).style.display = 'block';
 }
 
-// Función para enviar la orden a Firebase
-function submitOrderForm() {
+// Función para ocultar submenú
+function hideSubMenu(menuId) {
+    document.getElementById(`${menuId}-menu`).style.display = 'none';
+}
+
+// Función para calcular el total
+function calculateOrderTotal() {
+    let total = 0;
+    const prices = {
+        'order-cookies-mm': 1,
+        'order-cookies-banana': 1,
+        'order-cookies-golden': 1,
+        'order-muffin-chocolate': 1,
+        'order-muffin-vainilla': 1,
+        'order-dulce-limon': 1,
+        'order-jugo-naranja': 0.5
+    };
+
+    for (const [id, price] of Object.entries(prices)) {
+        const quantity = parseInt(document.getElementById(id).value) || 0;
+        total += quantity * price;
+    }
+
+    document.getElementById('order-total').innerText = `Total: $${total.toFixed(2)}`;
+}
+
+// Función para enviar orden
+function submitOrder() {
+    const order = {
+        cookiesMM: parseInt(document.getElementById('order-cookies-mm').value) || 0,
+        cookiesBanana: parseInt(document.getElementById('order-cookies-banana').value) || 0,
+        cookiesGolden: parseInt(document.getElementById('order-cookies-golden').value) || 0,
+        muffinChocolate: parseInt(document.getElementById('order-muffin-chocolate').value) || 0,
+        muffinVainilla: parseInt(document.getElementById('order-muffin-vainilla').value) || 0,
+        dulceLimon: parseInt(document.getElementById('order-dulce-limon').value) || 0,
+        jugoNaranja: parseInt(document.getElementById('order-jugo-naranja').value) || 0
+    };
+
     const orderData = {
-        galletas: document.getElementById('order-galletas').checked,
-        galletasMm: document.getElementById('order-galletas-mm').checked,
-        galletasBanana: document.getElementById('order-galletas-banana').checked,
-        muffins: document.getElementById('order-muffins').checked,
-        muffinsChocolate: document.getElementById('order-muffins-chocolate').checked,
-        muffinsVainilla: document.getElementById('order-muffins-vainilla').checked,
-        dulceLimon: document.getElementById('order-dulce-limon').checked,
-        jugoNaranja: document.getElementById('order-jugo-naranja').checked,
-        total: document.getElementById('total-amount').textContent
+        order: order,
+        timestamp: new Date().toISOString()
     };
 
     fetch(`${firebaseConfig.databaseURL}/orders.json?auth=${firebaseConfig.token}`, {
@@ -81,13 +101,16 @@ function submitOrderForm() {
     .then(data => {
         console.log('Success:', data);
         alert('Orden enviada con éxito');
-        // Opcional: Limpiar el formulario de orden
-        document.querySelectorAll('.order-form input').forEach(input => input.checked = false);
-        document.getElementById('total-amount').textContent = '0.00';
+        document.querySelectorAll('.order-form input').forEach(input => input.value = 0);
+        calculateOrderTotal();
     })
     .catch((error) => {
         console.error('Error:', error);
         alert('Error al enviar la orden');
     });
 }
+
+// Inicialización
+document.querySelectorAll('.order-form input').forEach(input => input.addEventListener('input', calculateOrderTotal));
+
 
