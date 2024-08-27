@@ -1,7 +1,7 @@
 // Configuración de Firebase
 const firebaseConfig = {
     databaseURL: "https://smarthome2-a24c5-default-rtdb.firebaseio.com/",
-    token: "yXmIvdRnL5YGpp3gQL1my1WR3iVf0xqw6izBHoQp"  // Reemplaza con tu token real
+    token: "yXmIvdRnL5YGpp3gQL1my1WR3iVf0xqw6izBHoQp"
 };
 
 // Función para enviar datos a Firebase (Contacto)
@@ -71,14 +71,11 @@ function calculateOrderTotal() {
     }
 
     document.getElementById('order-total').innerText = `Total: $${total.toFixed(2)}`;
-    return total; // Devolver el total para usarlo en el envío de datos
 }
 
 // Función para enviar orden
 function submitOrder() {
     const name = document.getElementById('order-name').value;
-    const total = calculateOrderTotal(); // Obtener el total actual
-
     const order = {
         cookiesMM: parseInt(document.getElementById('order-cookies-mm').value) || 0,
         cookiesBanana: parseInt(document.getElementById('order-cookies-banana').value) || 0,
@@ -93,7 +90,6 @@ function submitOrder() {
         const orderData = {
             name: name,
             order: order,
-            total: total, // Agregar el total del precio
             timestamp: new Date().toISOString()
         };
 
