@@ -1,10 +1,10 @@
 // Configuración de Firebase
 const firebaseConfig = {
     databaseURL: "https://smarthome2-a24c5-default-rtdb.firebaseio.com/",
-    token: "yXmIvdRnL5YGpp3gQL1my1WR3iVf0xqw6izBHoQp"  // Reemplaza con tu token real
+    token: "yXmIvdRnL5YGpp3gQL1my1WR3iVf0xqw6izBHoQp"
 };
 
-// Función para enviar datos a Firebase
+// Función para enviar datos del formulario de contacto a Firebase
 function submitContactForm() {
     const name = document.getElementById('name').value;
     const email = document.getElementById('email').value;
@@ -41,24 +41,52 @@ function submitContactForm() {
     }
 }
 
-// Funciones para mostrar y ocultar los submenús
-function showSubMenu(menu) {
-    const subMenuId = menu + '-menu';
-    document.getElementById(subMenuId).style.display = 'block';
+// Función para calcular el total de la orden
+function calculateTotal() {
+    let total = 0;
+    total += document.getElementById('order-galletas').checked ? 1 : 0;
+    total += document.getElementById('order-galletas-mm').checked ? 1 : 0;
+    total += document.getElementById('order-galletas-banana').checked ? 1 : 0;
+    total += document.getElementById('order-muffins').checked ? 1 : 0;
+    total += document.getElementById('order-muffins-chocolate').checked ? 1 : 0;
+    total += document.getElementById('order-muffins-vainilla').checked ? 1 : 0;
+    total += document.getElementById('order-dulce-limon').checked ? 1 : 0;
+    total += document.getElementById('order-jugo-naranja').checked ? 0.50 : 0;
+
+    document.getElementById('total-amount').textContent = total.toFixed(2);
 }
 
-function hideSubMenu(menu) {
-    const subMenuId = menu + '-menu';
-    document.getElementById(subMenuId).style.display = 'none';
-}
+// Función para enviar la orden a Firebase
+function submitOrderForm() {
+    const orderData = {
+        galletas: document.getElementById('order-galletas').checked,
+        galletasMm: document.getElementById('order-galletas-mm').checked,
+        galletasBanana: document.getElementById('order-galletas-banana').checked,
+        muffins: document.getElementById('order-muffins').checked,
+        muffinsChocolate: document.getElementById('order-muffins-chocolate').checked,
+        muffinsVainilla: document.getElementById('order-muffins-vainilla').checked,
+        dulceLimon: document.getElementById('order-dulce-limon').checked,
+        jugoNaranja: document.getElementById('order-jugo-naranja').checked,
+        total: document.getElementById('total-amount').textContent
+    };
 
-// Asegurarse de que el menú se cierre cuando se haga clic fuera de él
-document.addEventListener('click', function(event) {
-    const target = event.target;
-    if (!target.closest('.menu-item') && !target.closest('.sub-menu')) {
-        const subMenus = document.querySelectorAll('.sub-menu');
-        subMenus.forEach(subMenu => {
-            subMenu.style.display = 'none';
-        });
-    }
-});
+    fetch(`${firebaseConfig.databaseURL}/orders.json?auth=${firebaseConfig.token}`, {
+        method: 'POST',
+        body: JSON.stringify(orderData),
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    })
+    .then(response => response.json())
+    .then(data => {
+        console.log('Success:', data);
+        alert('Orden enviada con éxito');
+        // Opcional: Limpiar el formulario de orden
+        document.querySelectorAll('.order-form input').forEach(input => input.checked = false);
+        document.getElementById('total-amount').textContent = '0.00';
+    })
+    .catch((error) => {
+        console.error('Error:', error);
+        alert('Error al enviar la orden');
+    });
+}
