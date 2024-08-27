@@ -4,7 +4,7 @@ const firebaseConfig = {
     token: "yXmIvdRnL5YGpp3gQL1my1WR3iVf0xqw6izBHoQp"
 };
 
-// Función para enviar datos a Firebase
+// Función para enviar datos a Firebase (Contacto)
 function submitContactForm() {
     const name = document.getElementById('name').value;
     const email = document.getElementById('email').value;
@@ -75,6 +75,7 @@ function calculateOrderTotal() {
 
 // Función para enviar orden
 function submitOrder() {
+    const name = document.getElementById('order-name').value;
     const order = {
         cookiesMM: parseInt(document.getElementById('order-cookies-mm').value) || 0,
         cookiesBanana: parseInt(document.getElementById('order-cookies-banana').value) || 0,
@@ -85,29 +86,35 @@ function submitOrder() {
         jugoNaranja: parseInt(document.getElementById('order-jugo-naranja').value) || 0
     };
 
-    const orderData = {
-        order: order,
-        timestamp: new Date().toISOString()
-    };
+    if (name) {
+        const orderData = {
+            name: name,
+            order: order,
+            timestamp: new Date().toISOString()
+        };
 
-    fetch(`${firebaseConfig.databaseURL}/orders.json?auth=${firebaseConfig.token}`, {
-        method: 'POST',
-        body: JSON.stringify(orderData),
-        headers: {
-            'Content-Type': 'application/json'
-        }
-    })
-    .then(response => response.json())
-    .then(data => {
-        console.log('Success:', data);
-        alert('Orden enviada con éxito');
-        document.querySelectorAll('.order-form input').forEach(input => input.value = 0);
-        calculateOrderTotal();
-    })
-    .catch((error) => {
-        console.error('Error:', error);
-        alert('Error al enviar la orden');
-    });
+        fetch(`${firebaseConfig.databaseURL}/orders.json?auth=${firebaseConfig.token}`, {
+            method: 'POST',
+            body: JSON.stringify(orderData),
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        })
+        .then(response => response.json())
+        .then(data => {
+            console.log('Success:', data);
+            alert('Orden enviada con éxito');
+            document.querySelectorAll('.order-form input').forEach(input => input.value = 0);
+            document.getElementById('order-name').value = '';
+            calculateOrderTotal();
+        })
+        .catch((error) => {
+            console.error('Error:', error);
+            alert('Error al enviar la orden');
+        });
+    } else {
+        alert('Por favor, ingrese su nombre.');
+    }
 }
 
 // Inicialización
