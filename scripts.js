@@ -113,4 +113,3 @@ function submitOrder() {
 // Inicialización
 document.querySelectorAll('.order-form input').forEach(input => input.addEventListener('input', calculateOrderTotal));
 
-
